@@ -6,7 +6,7 @@
 #    By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/12 13:22:40 by mdursun           #+#    #+#              #
-#    Updated: 2024/11/20 09:35:55 by mdursun          ###   ########.fr        #
+#    Updated: 2024/11/20 16:51:10 by mdursun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ B_SRC = ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
 OBJ = ${C_SRC:%.c=%.o}
 BONUS_OBJ = ${B_SRC:%_bonus.c=%_bonus.o}
 
-all : ${NAME}
+all : ${NAME} bonus
 
 ${NAME} : ${OBJ} ${HEADER}
 	@${AR}  ${NAME} ${OBJ}

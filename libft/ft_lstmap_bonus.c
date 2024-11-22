@@ -6,29 +6,26 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 18:06:38 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 11:46:00 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:49:48 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void*), void (*del)(void*))
+t_stack	*ft_lstmap(t_stack *lst, void (*del)(void*))
 {
 	t_stack	*result;
 	t_stack	*node;
-	int	*content;
 
-	if (!f || !del || !lst)
+	if (!del || !lst)
 		return (NULL);
 	result = NULL;
 	while (lst)
 	{
-		content = f(&lst->num);
-		node = ft_lstnew(*content);
+		node = ft_lstnew(0);
 		if (!node)
 		{
 			ft_lstclear(&result, del);
-			del(content);
 			return (NULL);
 		}
 		ft_lstadd_back(&result, node);

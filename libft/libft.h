@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:32:34 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 11:39:17 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/20 16:42:29 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct		s_stack
 }					t_stack;
 
 char	**ft_split(const char *s, char c);
-t_stack	*ft_lstmap(t_stack *lst, void *(*f)(void*), void (*del)(void*));
+t_stack	*ft_lstmap(t_stack *lst, void (*del)(void*));
 void	ft_lstiter(t_stack *lst, void (*f)(void*));
 void	ft_lstclear(t_stack **lst, void (*del)(void*));
 void	ft_lstdelone(t_stack *lst, void (*del)(void*));
