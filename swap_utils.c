@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:43:05 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 17:10:34 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/22 21:40:58 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,27 @@ void	ss(t_stack *a, t_stack *b)
 	sa(a);
 	sb(b);
 }
-void	pa(t_stack *a, t_stack *b)
+void	pa(t_stack *a, t_stack *b, t_stack *b_count, t_stack *a_count)
 {
-	if (!b || b->num == 0)
-	{
-		
-	}
+	if (!b_count->num)
+		return ;
+	ft_lstadd_front(&a,b);
+	b = b -> next;
+	b_count->num--;
+	a_count->num++;
+}
+void	pb(t_stack *a, t_stack *b, t_stack *b_count, t_stack *a_count)
+{
+	if (!a_count->num)
+		return ;
+	ft_lstadd_front(&a,b);
+	b = b -> next;
+	b_count->num++;
+	a_count->num--;
+}
+void	ra(t_stack *a)
+{
+	a[ft_lstsize(a)].next = a -> next;
+	a -> next = NULL;
+	a[0] = a[ft_lstsize(a)];
 }

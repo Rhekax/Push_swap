@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 18:24:30 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/22 19:37:41 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ int	argument_check(char **args)
 
 int	main(int ac, char *av[])
 {
-	t_stack	*a;
-	t_stack	*b;
+	t_stack		*a;
+	t_stack		*b;
+	t_stack		*a_tracker;
+	t_stack		*b_tracker;
 
 	a = NULL;
 	if (ac == 1)
@@ -97,6 +99,9 @@ int	main(int ac, char *av[])
 	else if (argument_check(av))
 		exit (EXIT_FAILURE);
 	a = fill_array(av);
+	a_tracker = ft_lstnew(ft_lstsize(a));
+	b_tracker = ft_lstnew(0);
+	a_tracker -> next = b_tracker;
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
