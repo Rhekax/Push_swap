@@ -57,7 +57,7 @@ void	pb(t_stack *a, t_stack *b, t_stack *b_count, t_stack *a_count)
 }
 void	ra(t_stack *a)
 {
-	a[ft_lstsize(a)].next = a -> next;
-	a -> next = NULL;
+	a[ft_lstsize(a)].next = &a[0];
+	a[ft_lstsize(a) - 1].next = NULL;
 	a[0] = a[ft_lstsize(a)];
 }

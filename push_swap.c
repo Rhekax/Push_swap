@@ -18,7 +18,7 @@ int	dup_check(t_stack *a)
 
 	iter = a->next;
 	while (a->next)
-	{	
+	{
 		while(iter)
 		{
 			if (a->num  == iter->num)
