@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:43:05 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/27 13:31:17 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/27 18:20:22 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,30 @@ void	ss(t_stack *a, t_stack *b)
 	b->next->num = tmp;
 	ft_printf("ss\n");
 }
-void	pa(t_stack *a, t_stack *b, t_stack *b_count, t_stack *a_count)
+void	pa(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
 {
+	t_stack	*tmp;
+	
 	if (!b_count->num)
 		return ;
-	ft_lstadd_front(&a,b);
-	b = b -> next;
+	tmp = *b;
+	tmp = tmp -> next;
+	ft_lstadd_front(a,*b);
+	*b = tmp;
 	b_count->num--;
 	a_count->num++;
 	ft_printf("pa\n");
 }
-void	pb(t_stack *a, t_stack *b, t_stack *b_count, t_stack *a_count)
+void	pb(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
 {
-	if (!a_count->num)
+	t_stack	*tmp;
+	
+	if (a_count->num == 0)
 		return ;
-	ft_lstadd_front(&a,b);
-	b = b -> next;
+	tmp = *a;
+	tmp = tmp->next;
+	ft_lstadd_front(b,*a);
+	*a = tmp;
 	b_count->num++;
 	a_count->num--;
 	ft_printf("pb\n");

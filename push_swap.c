@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/22 19:37:41 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/27 18:21:27 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,18 @@ int	main(int ac, char *av[])
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
-	
+	pb(&a,&b,b_tracker,a_tracker);
+	pb(&a,&b,b_tracker,a_tracker);
+	pb(&a,&b,b_tracker,a_tracker);
 	while (a)
 	{
 	ft_printf("%d ",a->num);
 	a = a->next;
+	}
+	ft_printf("\n");
+	while (b->num != 0)
+	{
+	ft_printf("%d ",b->num);
+	b = b->next;
 	}
 }
