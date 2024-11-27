@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fPIC
+CC = cc
+CFLAGS =	-Wall	-Wextra	-Werror	-fPIC
 AR = ar	rc
 SRC = ft_printf.c ft_printf_utils.c
 OBJ = ${SRC:%.c=%.o}
@@ -23,7 +23,7 @@ ${NAME}: ${OBJ}
 	@${AR}	${NAME}	${OBJ}
 	@echo	"${NAME} created"
 
-%.o: %.c ft_printf.h
+%.o: %.c
 	@${CC}	${CFLAGS}	-c	$<	-o	$@
 	@echo	"$@ created"
 
