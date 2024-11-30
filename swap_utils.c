@@ -83,11 +83,16 @@ void	pb(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
 	ft_printf("pb\n");
 }
 
-void	ra(t_stack **a, int asize)
+void	ra(t_stack **a, int size)
 {
-	if (asize < 2)
+	int i = 0;
+	if (size < 2)
 		return ;
-	a[asize - 1] -> next = *a;
+	while (i < size)
+	{
+		ft_printf("%d\n",((*a) -> num));
+		a++;
+	}
 	ft_printf("ra\n");
 }
 

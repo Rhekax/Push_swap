@@ -99,11 +99,11 @@ int	main(int ac, char *av[])
 		exit (EXIT_FAILURE);
 	a = fill_stack(av);
 	tracker = ft_lstnew(ft_lstsize(a));
-	tracker -> next = ft_lstnew(0);;
+	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
-	ra (&a,tracker->num);
+	ra (&a, tracker -> num);
 	while (a)
 	{
 	ft_printf("%d ",a->num);
