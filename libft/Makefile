@@ -6,14 +6,14 @@
 #    By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/12 13:22:40 by mdursun           #+#    #+#              #
-#    Updated: 2024/11/20 16:51:10 by mdursun          ###   ########.fr        #
+#    Updated: 2024/11/28 12:47:54 by mdursun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 HEADER = libft.h
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -fPIC
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rc
 C_SRC = 	ft_bzero.c ft_isalnum.c \
 			ft_isalpha.c ft_isascii.c \

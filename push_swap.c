@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/27 18:21:27 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:00:53 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	dup_check(t_stack *a)
 {
 	t_stack	*iter;
 
-	iter = a->next;
-	while (a->next)
-	{	
-		while(iter)
+	iter = a -> next;
+	while (a -> next)
+	{
+		while (iter)
 		{
-			if (a->num  == iter->num)
+			if (a->num == iter->num)
 				exit(EXIT_FAILURE);
 			iter = iter->next;
 		}
@@ -30,14 +30,14 @@ int	dup_check(t_stack *a)
 	return (0);
 }
 
-t_stack	*fill_array(char **arg)
+t_stack	*fill_stack(char **arg)
 {
 	t_stack	*top;
 
 	top = malloc (sizeof(t_stack));
 	if (!top)
 		return (0);
-	top->next = NULL;
+	top -> next = NULL;
 	arg++;
 	while (*arg)
 	{
@@ -75,8 +75,8 @@ int	argument_check(char **args)
 			&& (args[j][i] < 9 || args[j][i] > 13) &&
 					args[j][i] != 43 && args[j][i] != 45)
 				exit (ft_printf("Error\n"));
-			else if (args[j][i + 1] == 43
-			|| args[j][i + 1] == 45
+			else if ((args[j][i + 1] == 43
+				|| args[j][i + 1] == 45)
 				&& ft_isdigit(args[j][i]))
 				exit (ft_printf("Error\n"));
 			i++;
@@ -90,24 +90,20 @@ int	main(int ac, char *av[])
 {
 	t_stack		*a;
 	t_stack		*b;
-	t_stack		*a_tracker;
-	t_stack		*b_tracker;
+	t_stack		*tracker;
 
 	a = NULL;
 	if (ac == 1)
 		exit (EXIT_FAILURE);
 	else if (argument_check(av))
 		exit (EXIT_FAILURE);
-	a = fill_array(av);
-	a_tracker = ft_lstnew(ft_lstsize(a));
-	b_tracker = ft_lstnew(0);
-	a_tracker -> next = b_tracker;
+	a = fill_stack(av);
+	tracker = ft_lstnew(ft_lstsize(a));
+	tracker -> next = ft_lstnew(0);;
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
-	pb(&a,&b,b_tracker,a_tracker);
-	pb(&a,&b,b_tracker,a_tracker);
-	pb(&a,&b,b_tracker,a_tracker);
+	ra (&a,tracker->num);
 	while (a)
 	{
 	ft_printf("%d ",a->num);

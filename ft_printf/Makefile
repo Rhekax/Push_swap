@@ -6,13 +6,13 @@
 #    By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 16:55:25 by mdursun           #+#    #+#              #
-#    Updated: 2024/11/20 09:36:21 by mdursun          ###   ########.fr        #
+#    Updated: 2024/11/28 12:48:14 by mdursun          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = cc
-CFLAGS =	-Wall	-Wextra	-Werror	-fPIC
+CFLAGS = -Wall -Wextra -Werror
 AR = ar	rc
 SRC = ft_printf.c ft_printf_utils.c
 OBJ = ${SRC:%.c=%.o}

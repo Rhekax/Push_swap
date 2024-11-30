@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 16:32:34 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 16:42:29 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/11/28 13:08:58 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct		s_stack
+typedef struct s_stack
 {
 	int				num;
 	struct s_stack	*next;
