@@ -12,7 +12,7 @@
 
 NAME = libft.a
 HEADER = libft.h
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rc
 C_SRC = 	ft_bzero.c ft_isalnum.c \

@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar	rc
 SRC = ft_printf.c ft_printf_utils.c

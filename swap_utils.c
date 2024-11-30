@@ -85,59 +85,105 @@ void	pb(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
 
 void	ra(t_stack **a, int size)
 {
-	int i = 0;
+    t_stack	*last;
+    t_stack	*newLast;
+
 	if (size < 2)
 		return ;
-	while (i < size)
-	{
-		ft_printf("%d\n",((*a) -> num));
-		a++;
-	}
+    last = *a;
+    newLast = *a;
+    while (last -> next)
+    {
+      newLast = last;
+      last = last -> next;
+    }
+    newLast -> next = NULL;
+    last -> next = *a;
+    *a = last;
 	ft_printf("ra\n");
 }
 
-void	rb(t_stack **b, int bsize)
+void	rb(t_stack **b, int size)
 {
-	if (bsize < 2)
+	t_stack	*last;
+	t_stack	*newLast;
+
+	if (size < 2)
 		return ;
-	b[bsize - 1] -> next = *b;
+	last = *b;
+	newLast = *b;
+	while (last -> next)
+	{
+		newLast = last;
+		last = last -> next;
+	}
+	newLast -> next = NULL;
+	last -> next = *b;
+	*b = last;
 	ft_printf("rb\n");
 }
 
-void	rra(t_stack *a, int asize)
+void	rra(t_stack **a, int size)
 {
-	if (asize < 2)
+	t_stack	*first;
+	t_stack	*newFirst;
+
+	if (size < 2)
 		return ;
-	a[asize].next = &a[0];
+	first = *a;
+    newFirst = (*a) -> next;
+    while (first -> next)
+      first = first -> next;
+    first -> next = *a;
+    (*a) -> next = NULL;
+    *a = newFirst;
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack *b, int bsize)
+void	rrb(t_stack **b, int size)
 {
-	if (bsize < 2)
+	t_stack	*first;
+	t_stack	*newFirst;
+
+	if (size < 2)
 		return ;
-	b[bsize].next = &b[0];
-	b[0] = b[1];
-	b[bsize].next = NULL;
+	first = *b;
+	newFirst = (*b) -> next;
+	while (first -> next)
+		first = first -> next;
+	first -> next = *b;
+	(*b) -> next = NULL;
+	*b = newFirst;
 	ft_printf("rrb\n");
 }
 
-void	rr(t_stack *a, t_stack *b, int bsize, int asize)
+void	rr(t_stack **a, t_stack **b, int bsize, int asize)
 {
-	while (1)
-	{
-		if (asize < 2)
-			break ;
-		a[asize].next = a;
-		a[0] = a[asize];
-		a[asize].next = NULL;
-		break ;
-	}
-	if (bsize < 2)
+	t_stack	*last;
+	t_stack	*newLast;
+
+	if (asize < 2 && bsize < 2)
 		return ;
-	b[bsize].next = b;
-	b[0] = b[bsize];
-	b[bsize].next = NULL;
+	last = *a;
+	newLast = *a;
+	while (last -> next)
+	{
+		newLast = last;
+		last = last -> next;
+	}
+	newLast -> next = NULL;
+	last -> next = *a;
+	*a = last;
+	last = *b;
+	newLast = *b;
+	while (last -> next)
+	{
+		newLast = last;
+		last = last -> next;
+	}
+	newLast -> next = NULL;
+	last -> next = *b;
+	*b = last;
 	ft_printf("rr\n");
 }
 

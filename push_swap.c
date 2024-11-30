@@ -16,9 +16,9 @@ int	dup_check(t_stack *a)
 {
 	t_stack	*iter;
 
-	iter = a -> next;
 	while (a -> next)
 	{
+          iter = a -> next;
 		while (iter)
 		{
 			if (a->num == iter->num)
@@ -103,7 +103,10 @@ int	main(int ac, char *av[])
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
-	ra (&a, tracker -> num);
+    pb (&a, &b, tracker, tracker -> next);
+	pb (&a, &b, tracker, tracker -> next);
+	pb (&a, &b, tracker, tracker -> next);
+	rr (&a, &b, tracker -> num, tracker -> next -> num);
 	while (a)
 	{
 	ft_printf("%d ",a->num);

@@ -1,6 +1,6 @@
 NAME = push_swap
 SOURCE = push_swap.c swap_utils.c
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 LIBFTPATH = libft/
 PRINTFPATH = ft_printf/
@@ -35,4 +35,4 @@ fclean :
 
 re : fclean all
 
-.PHONY: fclean clean re run all
+.PHONY: fclean clean re all
