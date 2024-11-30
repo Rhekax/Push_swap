@@ -16,8 +16,8 @@
 # include "./libft/libft.h"
 # include "./ft_printf/ft_printf.h"
 
-void	rrr(t_stack *a, t_stack *b, int bsize, int asize);
-void	rr(t_stack **a, t_stack **b, int bsize, int asize);
+void	rrr(t_stack **a, t_stack **b, int asize, int bsize);
+void	rr(t_stack **a, t_stack **b, int asize, int bsize);
 void	rrb(t_stack **b, int bsize);
 void	rra(t_stack **a, int asize);
 void	rb(t_stack **b, int bsize);

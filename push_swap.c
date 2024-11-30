@@ -103,10 +103,10 @@ int	main(int ac, char *av[])
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	b = ft_lstmap (a, free);
-    pb (&a, &b, tracker, tracker -> next);
-	pb (&a, &b, tracker, tracker -> next);
-	pb (&a, &b, tracker, tracker -> next);
-	rr (&a, &b, tracker -> num, tracker -> next -> num);
+    pb(&a, &b, tracker, tracker -> next);
+	pb(&a, &b, tracker, tracker -> next);
+	pb(&a, &b, tracker, tracker -> next);
+    rrr(&a, &b, tracker -> num, tracker -> next -> num);
 	while (a)
 	{
 	ft_printf("%d ",a->num);
