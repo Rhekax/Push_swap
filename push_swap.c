@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/12/01 13:44:05 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/01 15:16:52 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,35 @@
 
 int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
 {
-
+	t_stack	*tmpa;
+	t_stack	*tmpb;
+	
+	tmpb = *b;
+	tmpa = *a;
+	while (tmpb -> next -> next)
+		tmpb = tmpb -> next;
+	while (tmpa -> next -> next)
+		tmpa = tmpa -> next;
+	if (tmpb -> next -> num < (*a) -> num)
+		return (1);
+	if ((tmpb -> next -> num > (*a) -> num) && ((*a) -> next -> num > (*b) -> num))
+		return (2);
+	return (0);
 }
 
 void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
 {
 	pb(a, b, *tracker, (*tracker) -> next);
 	while (checkStacks(a, b, tracker))
+	{
+		if (checkStacks(a, b, tracker) == 2)
+		{
+			pb (a, b, *tracker, (*tracker) -> next);
+			 ()	
+		}
+			
 		pb(a, b, *tracker, (*tracker) -> next);
+	}
 	
 }
 
