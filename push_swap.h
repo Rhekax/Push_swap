@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:39 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/30 14:06:23 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/01 13:43:42 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	pa(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count);
 void	sb(t_stack *top);
 void	sa(t_stack *top);
 void	ss(t_stack *a, t_stack *b);
-
+void	sortStack(t_stack **a, t_stack **b, t_stack **tracker);
+int		checkStacks(t_stack **a, t_stack **b, t_stack **tracker);
 #endif

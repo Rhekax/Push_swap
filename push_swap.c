@@ -6,11 +6,24 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/12/01 12:57:17 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/01 13:44:05 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
+{
+
+}
+
+void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
+{
+	pb(a, b, *tracker, (*tracker) -> next);
+	while (checkStacks(a, b, tracker))
+		pb(a, b, *tracker, (*tracker) -> next);
+	
+}
 
 int	dup_check(t_stack *a)
 {
@@ -103,15 +116,7 @@ int	main(int ac, char *av[])
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
-	pb (&a,&b,tracker,tracker->next);
-	pb (&a,&b,tracker,tracker->next);
-	pb (&a,&b,tracker,tracker->next);
-	pb (&a,&b,tracker,tracker->next);
-	pb (&a,&b,tracker,tracker->next);
-	rr (&a,&b,tracker->num,tracker->next->num);
-	rrr (&a,&b,tracker->num,tracker->next->num);
-	pa (&a,&b,tracker,tracker->next);
-	
+	sortStack(&a,&b,&tracker);
 	while (a)
 	{
 	ft_printf("%d ",a->num);
