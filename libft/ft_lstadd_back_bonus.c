@@ -6,7 +6,7 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 13:39:43 by mdursun           #+#    #+#             */
-/*   Updated: 2024/11/20 11:32:03 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/01 12:32:55 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
-	t_stack	*temp;
-
 	if (!*lst)
 	{
 		*lst = new;
+		new -> next = NULL;
 		return ;
 	}
-	temp = *lst;
-	while (temp->next)
+	while ((*lst) -> next)
 	{
-		temp = temp->next;
+		*lst = (*lst) -> next;
 	}
-	temp -> next = new;
+	(*lst) -> next = new;
+	new -> next = NULL;
 }

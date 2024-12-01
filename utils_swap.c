@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_utils.c                                       :+:      :+:    :+:   */
+/*   utils_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 15:43:05 by mdursun           #+#    #+#             */
-/*   Updated: 2024/12/01 12:56:02 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/01 12:14:29 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	pb(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	if (a_count -> num == 0)
 		return ;
 	tmp = *a;
-	tmp = tmp -> next;
+	tmp = tmp->next;
 	ft_lstadd_front(b,*a);
 	*a = tmp;
-	b_count -> num++;
-	a_count -> num--;
+	b_count->num++;
+	a_count->num--;
 	ft_printf("pb\n");
 }
 
