@@ -6,45 +6,47 @@
 /*   By: mdursun <mdursun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 18:17:41 by mdursun           #+#    #+#             */
-/*   Updated: 2024/12/01 15:16:52 by mdursun          ###   ########.fr       */
+/*   Updated: 2024/12/15 21:23:11 by mdursun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "stdio.h"
 
-int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
-{
-	t_stack	*tmpa;
-	t_stack	*tmpb;
+// int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
+// {
+// 	t_stack	*tmpa;
+// 	t_stack	*tmpb;
 	
-	tmpb = *b;
-	tmpa = *a;
-	while (tmpb -> next -> next)
-		tmpb = tmpb -> next;
-	while (tmpa -> next -> next)
-		tmpa = tmpa -> next;
-	if (tmpb -> next -> num < (*a) -> num)
-		return (1);
-	if ((tmpb -> next -> num > (*a) -> num) && ((*a) -> next -> num > (*b) -> num))
-		return (2);
-	return (0);
-}
+// 	tmpb = *b;
+// 	tmpa = *a;
+// 	while (tmpb -> next -> next && tmpb -> next)
+// 		tmpb = tmpb -> next;
+// 	while (tmpa -> next -> next && tmpa -> next)
+// 		tmpa = tmpa -> next;
+// 	if (tmpb -> next -> num < (*a) -> num)
+// 		return (1);
+// 	if ((tmpb -> next -> num > (*a) -> num) && ((*a) -> next -> num > (*b) -> num))
+// 		return (2);
+// 	return (0);
+// }
 
-void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
-{
-	pb(a, b, *tracker, (*tracker) -> next);
-	while (checkStacks(a, b, tracker))
-	{
-		if (checkStacks(a, b, tracker) == 2)
-		{
-			pb (a, b, *tracker, (*tracker) -> next);
-			 ()	
-		}
+// void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
+// {
+// 	pb(a, b, *tracker, (*tracker) -> next);
+// 	while (checkStacks(a, b, tracker))
+// 	{
+// 		if (checkStacks(a, b, tracker) == 2)
+// 		{
+// 			pb (a, b, *tracker, (*tracker) -> next);
+// 			 ()	
+// 		}
 			
-		pb(a, b, *tracker, (*tracker) -> next);
-	}
+// 		pb(a, b, *tracker, (*tracker) -> next);
+// 	}
 	
-}
+// }
+
 
 int	dup_check(t_stack *a)
 {
@@ -80,9 +82,11 @@ t_stack	*fill_stack(char **arg)
 			while (**arg == 32 || (**arg >= 9 && **arg <= 13))
 				(*arg)++;
 			tmp -> num = ft_atoi (*(const char **)arg);
+			if ((tmp->num > 2147483647) || (tmp->num <= -2147483648))
+				ft_printf("a");
 			while (ft_isdigit(**arg) || **arg == 43 || **arg == 45)
 				(*arg)++;
-			while (**arg == 32 || (**arg >= 9 && **arg <= 13))
+			while (**arg == 32 || (**arg >= 9 && **arg <= 13) )
 				(*arg)++;
 			if (!**arg && !*(arg + 1))
 				break ;
@@ -108,11 +112,11 @@ int	argument_check(char **args)
 			if (args[j][i] != 32 && !ft_isdigit(args[j][i])
 			&& (args[j][i] < 9 || args[j][i] > 13) &&
 					args[j][i] != 43 && args[j][i] != 45)
-				exit (ft_printf("Error\n"));
+				exit (EXIT_FAILURE);
 			else if ((args[j][i + 1] == 43
 				|| args[j][i + 1] == 45)
 				&& ft_isdigit(args[j][i]))
-				exit (ft_printf("Error\n"));
+				exit (EXIT_FAILURE);
 			i++;
 		}
 		j++;
@@ -122,12 +126,15 @@ int	argument_check(char **args)
 
 int	main(int ac, char *av[])
 {
+	long z;
 	t_stack		*a;
 	t_stack		*b;
 	t_stack		*tracker;
 
+	z = ft_atoi("13");
 	a = NULL;
 	b = NULL;
+	printf("%lu",z);
 	if (ac == 1)
 		exit (EXIT_FAILURE);
 	else if (argument_check(av))
@@ -137,10 +144,10 @@ int	main(int ac, char *av[])
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
-	sortStack(&a,&b,&tracker);
+	// sortStack(&a,&b,&tracker);
 	while (a)
 	{
-	ft_printf("%d ",a->num);
+	printf("%u ",a->num);
 	a = a->next;
 	}
 	ft_printf("\n");
