@@ -66,9 +66,8 @@ int	dup_check(t_stack *a)
 	return (0);
 }
 
-t_stack	*fill_stack(char **arg)
+t_stack	*fill_stack(char **arg, t_stack *top)
 {
-	t_stack	*top;
 	t_stack	*tmp;
 
 	top = malloc (sizeof(t_stack));
@@ -82,8 +81,6 @@ t_stack	*fill_stack(char **arg)
 			while (**arg == 32 || (**arg >= 9 && **arg <= 13))
 				(*arg)++;
 			tmp -> num = ft_atoi (*(const char **)arg);
-			if ((tmp->num > 2147483647) || (tmp->num <= -2147483648))
-				ft_printf("a");
 			while (ft_isdigit(**arg) || **arg == 43 || **arg == 45)
 				(*arg)++;
 			while (**arg == 32 || (**arg >= 9 && **arg <= 13) )
@@ -126,20 +123,20 @@ int	argument_check(char **args)
 
 int	main(int ac, char *av[])
 {
-	long z;
+	int z;
 	t_stack		*a;
 	t_stack		*b;
 	t_stack		*tracker;
 
-	z = ft_atoi("13");
+	z = ft_atoi("-2147483648");
 	a = NULL;
 	b = NULL;
-	printf("%lu",z);
+	ft_printf("%d",z);
 	if (ac == 1)
 		exit (EXIT_FAILURE);
 	else if (argument_check(av))
 		exit (EXIT_FAILURE);
-	a = fill_stack(av);
+	a = fill_stack(av, a);
 	tracker = ft_lstnew(ft_lstsize(a));
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
@@ -147,7 +144,7 @@ int	main(int ac, char *av[])
 	// sortStack(&a,&b,&tracker);
 	while (a)
 	{
-	printf("%u ",a->num);
+	printf("%d ",a->num);
 	a = a->next;
 	}
 	ft_printf("\n");

@@ -33,6 +33,6 @@ fclean :
 	@make -C ${LIBFTPATH} fclean
 	@rm -rf  ${OBJ} ${NAME}
 
-re : fclean all
+re : fclean all clean
 
 .PHONY: fclean clean re all
