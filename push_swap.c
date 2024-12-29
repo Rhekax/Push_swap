@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include "stdio.h"
 
 // int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
 // {
@@ -66,8 +65,9 @@ int	dup_check(t_stack *a)
 	return (0);
 }
 
-t_stack	*fill_stack(char **arg, t_stack *top)
+t_stack	*fill_stack(char **arg)
 {
+	t_stack	*top;
 	t_stack	*tmp;
 
 	top = malloc (sizeof(t_stack));
@@ -87,7 +87,7 @@ t_stack	*fill_stack(char **arg, t_stack *top)
 				(*arg)++;
 			if (!**arg && !*(arg + 1))
 				break ;
-			ft_lstadd_back(&top, ft_lstnew(ft_atoi(*(const char **)arg)));
+			ft_lstadd_back(&tmp, ft_lstnew(ft_atoi(*(const char **)arg)));
 			tmp = tmp -> next;
 		}
 	}
@@ -123,20 +123,17 @@ int	argument_check(char **args)
 
 int	main(int ac, char *av[])
 {
-	int z;
 	t_stack		*a;
 	t_stack		*b;
 	t_stack		*tracker;
 
-	z = ft_atoi("-2147483648");
 	a = NULL;
 	b = NULL;
-	ft_printf("%d",z);
 	if (ac == 1)
 		exit (EXIT_FAILURE);
 	else if (argument_check(av))
 		exit (EXIT_FAILURE);
-	a = fill_stack(av, a);
+	a = fill_stack(av);
 	tracker = ft_lstnew(ft_lstsize(a));
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
@@ -144,7 +141,7 @@ int	main(int ac, char *av[])
 	// sortStack(&a,&b,&tracker);
 	while (a)
 	{
-	printf("%d ",a->num);
+	ft_printf("%d a ",a->num);
 	a = a->next;
 	}
 	ft_printf("\n");
