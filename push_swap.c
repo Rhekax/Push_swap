@@ -80,6 +80,7 @@ t_stack	*fill_stack(char **arg)
 		{
 			while (**arg == 32 || (**arg >= 9 && **arg <= 13))
 				(*arg)++;
+	ft_printf("aaaa");
 			tmp -> num = ft_atoi (*(const char **)arg);
 			while (ft_isdigit(**arg) || **arg == 43 || **arg == 45)
 				(*arg)++;

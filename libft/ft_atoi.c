@@ -16,7 +16,7 @@ void	checkOverflow(int digit, int result, int sign)
 {
 	if (sign == -1 && result > (-2147483648 + digit) / 10)
 		exit(EXIT_FAILURE);
-	else if (sign == 1 && result > (2147483647 + digit) / 10)
+	else if (sign == 1 && result > (2147483647 - digit) / 10)
 		exit(EXIT_FAILURE);
 }
 
@@ -28,6 +28,7 @@ int	ft_atoi(const char *str)
 
 	sign = 1;
 	result = 0;
+	digit = 0;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == 45 || *str == 43)
@@ -39,7 +40,7 @@ int	ft_atoi(const char *str)
 	while (*str >= 48 && *str <= 57)
 	{
 		digit = *str - 48;
-		result = result * 10 + (*str - 48);
+		result = result * 10 + digit;
 		checkOverflow(digit, result, sign);
 		str++;
 	}
