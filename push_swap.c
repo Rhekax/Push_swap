@@ -12,38 +12,68 @@
 
 #include "push_swap.h"
 
-// int	checkStacks(t_stack **a, t_stack **b, t_stack **tracker)
-// {
-// 	t_stack	*tmpa;
-// 	t_stack	*tmpb;
-	
-// 	tmpb = *b;
-// 	tmpa = *a;
-// 	while (tmpb -> next -> next && tmpb -> next)
-// 		tmpb = tmpb -> next;
-// 	while (tmpa -> next -> next && tmpa -> next)
-// 		tmpa = tmpa -> next;
-// 	if (tmpb -> next -> num < (*a) -> num)
-// 		return (1);
-// 	if ((tmpb -> next -> num > (*a) -> num) && ((*a) -> next -> num > (*b) -> num))
-// 		return (2);
-// 	return (0);
-// }
+void print_stack(t_stack *stack, const char *name) {
+    ft_printf("%s: ", name);
+    while (stack) {
+        ft_printf("%d ", stack->num);
+        stack = stack->next;
+    }
+    ft_printf("\n");
+}
 
+void mergeSort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count) {
+    if (a_count->num <= 1) {
+        return;  // Base case: single element is trivially sorted
+    }
+    // Step 1: Divide the stack into two halves by moving half of a to b
+    int mid = a_count->num / 2;
+
+    while (mid--) 
+	{
+        pb(a, b, b_count, a_count);
+    }
+    ft_printf("----------first half---------\n");
+    mergeSort(a, b, a_count, b_count); 
+    ft_printf("----------second half---------\n");
+    mergeSort(a, b, a_count, b_count); 
+
+    ft_printf("----------last---------\n");
+    while (b_count->num > 0) {
+        if ((*a)->num <= (*b)->num) {
+            pa(a, b, b_count, a_count); 
+        } else {
+            pb(a, b, b_count, a_count);  
+        }
+    }
+}
+
+
+// int	checkSort(t_stack *a)
+// {
+// 	int	tmp;
+
+// 	tmp = a->num;
+// 	while(a)
+// 	{
+// 		if (a->num < tmp)
+// 			return(0);
+// 		tmp = a->num;
+// 		a = a->next;
+// 	}
+// 	return (1);
+// }
 // void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
 // {
-// 	pb(a, b, *tracker, (*tracker) -> next);
-// 	while (checkStacks(a, b, tracker))
+// 	int	i;
+
+// 	i = 0;
+// 	while (i < (*tracker)->num / 2)
+// 		pb(a,b,(*tracker)->next,(*tracker));
+// 	while(!checkSort(*a))
 // 	{
-// 		if (checkStacks(a, b, tracker) == 2)
-// 		{
-// 			pb (a, b, *tracker, (*tracker) -> next);
-// 			 ()	
-// 		}
+// 		if ((*b)->num > (*a)->num)
 			
-// 		pb(a, b, *tracker, (*tracker) -> next);
 // 	}
-	
 // }
 
 
@@ -71,6 +101,7 @@ t_stack	*fill_stack(char **arg)
 	t_stack	*tmp;
 
 	top = malloc (sizeof(t_stack));
+	*top = (t_stack){};
 	if (!top)
 		return (0);
 	tmp = top;
@@ -80,7 +111,6 @@ t_stack	*fill_stack(char **arg)
 		{
 			while (**arg == 32 || (**arg >= 9 && **arg <= 13))
 				(*arg)++;
-	ft_printf("aaaa");
 			tmp -> num = ft_atoi (*(const char **)arg);
 			while (ft_isdigit(**arg) || **arg == 43 || **arg == 45)
 				(*arg)++;
@@ -88,7 +118,7 @@ t_stack	*fill_stack(char **arg)
 				(*arg)++;
 			if (!**arg && !*(arg + 1))
 				break ;
-			ft_lstadd_back(&tmp, ft_lstnew(ft_atoi(*(const char **)arg)));
+			ft_lstadd_back(&tmp, ft_lstnew(tmp->num));
 			tmp = tmp -> next;
 		}
 	}
@@ -105,15 +135,19 @@ int	argument_check(char **args)
 	while (args[j])
 	{
 		i = 0;
+		if (!args[j][i])
+			exit(EXIT_FAILURE);
 		while (args[j][i])
 		{
 			if (args[j][i] != 32 && !ft_isdigit(args[j][i])
 			&& (args[j][i] < 9 || args[j][i] > 13) &&
 					args[j][i] != 43 && args[j][i] != 45)
 				exit (EXIT_FAILURE);
-			else if ((args[j][i + 1] == 43
-				|| args[j][i + 1] == 45)
+			else if ((args[j][i + 1] == 43 || args[j][i + 1] == 45)
 				&& ft_isdigit(args[j][i]))
+				exit (EXIT_FAILURE);
+			else if (((args[j][i + 1] == 43 || args[j][i + 1] == 45)
+					&& (args[j][i] == 43 || args[j][i] == 45)))
 				exit (EXIT_FAILURE);
 			i++;
 		}
@@ -140,6 +174,9 @@ int	main(int ac, char *av[])
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	// sortStack(&a,&b,&tracker);
+	// pb(&a, &b, tracker, tracker -> next);
+	// ft_printf("%d ",checkStacks(&a,&b,&tracker));
+	mergeSort(&a,&b,tracker,tracker->next);
 	while (a)
 	{
 	ft_printf("%d a ",a->num);

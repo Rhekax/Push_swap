@@ -1,7 +1,7 @@
 NAME = push_swap
 SOURCE = push_swap.c swap_utils.c
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 LIBFTPATH = libft/
 PRINTFPATH = ft_printf/
 PRINTFLIB = ft_printf/libftprintf.a

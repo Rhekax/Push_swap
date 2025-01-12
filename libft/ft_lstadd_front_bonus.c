@@ -14,6 +14,6 @@
 
 void	ft_lstadd_front(t_stack **lst, t_stack *new)
 {
-	new -> next = lst[0];
-	lst[0] = new;
+	new -> next = *lst;
+	*lst = new;
 }

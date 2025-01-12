@@ -60,9 +60,8 @@ void	pa(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
 	if (!b_count->num)
 		return ;
 	tmp = *b;
-	tmp = tmp -> next;
-	ft_lstadd_front(a,*b);
-	*b = tmp;
+	*b = (*b) -> next;
+	ft_lstadd_front(a,tmp);
 	b_count->num--;
 	a_count->num++;
 	ft_printf("pa\n");
@@ -75,11 +74,10 @@ void	pb(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	if (a_count -> num == 0)
 		return ;
 	tmp = *a;
-	tmp = tmp -> next;
-	ft_lstadd_front(b,*a);
-	*a = tmp;
-	b_count -> num++;
-	a_count -> num--;
+	*a = (*a) -> next;
+	ft_lstadd_front(b,tmp);
+	(b_count -> num)++;
+	(a_count -> num)--;
 	ft_printf("pb\n");
 }
 

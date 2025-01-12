@@ -12,9 +12,9 @@
 
 #include "../push_swap.h"
 
-void	checkOverflow(int digit, int result, int sign)
+void	checkOverflow(long digit, long result, long sign)
 {
-	if (sign == -1 && result > (-2147483648 + digit) / 10)
+	if (sign == -1 && result > (2147483648 - digit) / 10)
 		exit(EXIT_FAILURE);
 	else if (sign == 1 && result > (2147483647 - digit) / 10)
 		exit(EXIT_FAILURE);
@@ -22,13 +22,12 @@ void	checkOverflow(int digit, int result, int sign)
 
 int	ft_atoi(const char *str)
 {
-	int	result;
-	int	sign;
-	int	digit;
+	long	result;
+	long	sign;
+	long	digit;
 
 	sign = 1;
 	result = 0;
-	digit = 0;
 	while (*str == 32 || (*str >= 9 && *str <= 13))
 		str++;
 	if (*str == 45 || *str == 43)
@@ -37,11 +36,13 @@ int	ft_atoi(const char *str)
 			sign = -1;
 		str++;
 	}
+	if (!ft_isdigit(*str))
+		exit(EXIT_FAILURE);
 	while (*str >= 48 && *str <= 57)
 	{
 		digit = *str - 48;
-		result = result * 10 + digit;
 		checkOverflow(digit, result, sign);
+		result = result * 10 + digit;
 		str++;
 	}
 	return (result * sign);

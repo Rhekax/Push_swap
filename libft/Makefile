@@ -13,7 +13,7 @@
 NAME = libft.a
 HEADER = libft.h
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 AR = ar rc
 C_SRC = 	ft_bzero.c ft_isalnum.c \
 			ft_isalpha.c ft_isascii.c \

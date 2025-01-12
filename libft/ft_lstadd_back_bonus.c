@@ -14,10 +14,13 @@
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
+	if (!lst)
+		return ;
 	if (!*lst)
 	{
 		*lst = new;
-		new -> next = NULL;
+		if (new)
+			new -> next = NULL;
 		return ;
 	}
 	while ((*lst)->next)
