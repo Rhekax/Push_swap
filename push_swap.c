@@ -70,13 +70,14 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 }
 void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
-	while (a_count->num--)
+	int i;
+
+	i = a_count->num;
+	while (i--)
 		pb(a,b,a_count,b_count);
-	while (b_count->num--)
+	i = b_count->num;
+	while (i--)
 		pa(a,b,a_count,b_count);
-	print_stack(*a,"a");
-	ft_printf("%d \n",b_count->num);
-	print_stack(*b,"b");
 }
 
 

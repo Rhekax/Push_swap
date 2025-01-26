@@ -57,7 +57,7 @@ void	pa(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	t_stack	*tmp;
 
-	if (b_count->num == 0)
+	if (b_count->num <= 0)
 		return ;
 	tmp = *b;
 	*b = (*b) -> next;
@@ -71,7 +71,7 @@ void	pb(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	t_stack	*tmp;
 
-	if (a_count -> num == 0)
+	if (a_count -> num <= 0)
 		return ;
 	tmp = *a;
 	*a = (*a) -> next;
