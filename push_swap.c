@@ -24,20 +24,31 @@ void print_stack(t_stack *stack, const char *name) {
 int checkPosition(t_stack *a, t_stack *b)
 {
     int i = 0;
+	int tmp = b->num;
+	ft_printf("aaaa\n");
+	int c = 0;
+	t_stack *z = b;
 
     if (!b) {
         return -1;
     }
-    while (b->next)
+    while (b)
     {
-        if (b->num > a->num && b->next->num > a->num)
-        {
-            return i + 1;
-        }
-        i++;
-        b = b->next;
-    }
-    return -1;
+        if (b->num > a->num)
+		{
+			if (b->num < tmp)
+				tmp = b->num;
+		}
+		if (!b->next && !c)
+			return -1;
+		b = b->next;
+	}
+	while (tmp != z->num)
+	{
+		i++;
+		z = z->next;
+	}
+	return i;
 }
 
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
