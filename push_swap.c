@@ -21,67 +21,49 @@ void print_stack(t_stack *stack, const char *name) {
     ft_printf("\n");
 }
 
-int checkPosition(t_stack *a, t_stack *b,t_stack *bcount)
+int checkPosition(t_stack *a, t_stack *b)
 {
-	t_stack	*tmp;
-	t_stack	*start;
-	int	i;
+    int i = 0;
 
-	i = 0;
-	tmp = b;
-	start = b;
-	while (b)
-	{
-		if (a->num > b->num)
-			tmp = b;
-		b = b->next;
-	}
-	while (start->num != tmp->num)
-	{
-		i++;
-		start = start->next;
-		if (bcount->num == i)
-			i = 0;
-	}
-	return (i);
+    if (!b) {
+        return -1;
+    }
+    while (b->next)
+    {
+        if (b->num > a->num && b->next->num > a->num)
+        {
+            return i + 1;
+        }
+        i++;
+        b = b->next;
+    }
+    return -1;
 }
 
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	int	i;
 
-	i = checkPosition((*a),(*b),b_count);
-	if (i == 1)
+	i = checkPosition((*a),(*b));
+	if (i == 0)
 	{
 		pb(a,b,a_count,b_count);
 		sb(*b);
 	}
+	else if (i == -1)
+		pb(a,b,a_count,b_count);
 	else
 	{
-		while (i != 1)
+		while (i)
 		{
 			rb(b,b_count->num);
 			i++;
-			if (b_count->num  == i)
+			if (b_count->num == i)
 				i = 0;
 		}
 		checkOp(a,b,a_count,b_count);
 	}
 }
-void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
-{
-	int i;
-
-	i = a_count->num;
-	while (i--)
-		pb(a,b,a_count,b_count);
-	i = b_count->num;
-	while (i--)
-		pa(a,b,a_count,b_count);
-}
-
-
-
 int	checkSort(t_stack *a)
 {
 	int	tmp;
@@ -96,6 +78,22 @@ int	checkSort(t_stack *a)
 	}
 	return (1);
 }
+
+void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
+{
+	while (a_count->num)
+	{
+		checkOp(a,b,a_count,b_count);
+	}
+	while (*b)
+	{
+		pa(a,b,a_count,b_count);
+	}
+	// while (!checkSort(*a))
+	// 	ra(a,a_count->num);
+	print_stack(*a,"a");
+}
+
 // void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
 // {
 // 	int	i;
