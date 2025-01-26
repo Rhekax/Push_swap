@@ -21,47 +21,80 @@ void print_stack(t_stack *stack, const char *name) {
     ft_printf("\n");
 }
 
-void mergeSort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count) {
-    if (a_count->num <= 1) {
-        return;  // Base case: single element is trivially sorted
-    }
-    // Step 1: Divide the stack into two halves by moving half of a to b
-    int mid = a_count->num / 2;
+int checkPosition(t_stack *a, t_stack *b,t_stack *bcount)
+{
+	t_stack	*tmp;
+	t_stack	*start;
+	int	i;
 
-    while (mid--) 
+	i = 0;
+	tmp = b;
+	start = b;
+	while (b)
 	{
-        pb(a, b, b_count, a_count);
-    }
-    ft_printf("----------first half---------\n");
-    mergeSort(a, b, a_count, b_count); 
-    ft_printf("----------second half---------\n");
-    mergeSort(a, b, a_count, b_count); 
+		if (a->num > b->num)
+			tmp = b;
+		b = b->next;
+	}
+	while (start->num != tmp->num)
+	{
+		i++;
+		start = start->next;
+		if (bcount->num == i)
+			i = 0;
+	}
+	return (i);
+}
 
-    ft_printf("----------last---------\n");
-    while (b_count->num > 0) {
-        if ((*a)->num <= (*b)->num) {
-            pa(a, b, b_count, a_count); 
-        } else {
-            pb(a, b, b_count, a_count);  
-        }
-    }
+void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
+{
+	int	i;
+
+	i = checkPosition((*a),(*b),b_count);
+	if (i == 1)
+	{
+		pb(a,b,a_count,b_count);
+		sb(*b);
+	}
+	else
+	{
+		while (i != 1)
+		{
+			rb(b,b_count->num);
+			i++;
+			if (b_count->num  == i)
+				i = 0;
+		}
+		checkOp(a,b,a_count,b_count);
+	}
+}
+void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
+{
+	while (a_count->num--)
+		pb(a,b,a_count,b_count);
+	while (b_count->num--)
+		pa(a,b,a_count,b_count);
+	print_stack(*a,"a");
+	ft_printf("%d \n",b_count->num);
+	print_stack(*b,"b");
 }
 
 
-// int	checkSort(t_stack *a)
-// {
-// 	int	tmp;
 
-// 	tmp = a->num;
-// 	while(a)
-// 	{
-// 		if (a->num < tmp)
-// 			return(0);
-// 		tmp = a->num;
-// 		a = a->next;
-// 	}
-// 	return (1);
-// }
+int	checkSort(t_stack *a)
+{
+	int	tmp;
+
+	tmp = a->num;
+	while(a)
+	{
+		if (a->num < tmp)
+			return(0);
+		tmp = a->num;
+		a = a->next;
+	}
+	return (1);
+}
 // void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
 // {
 // 	int	i;
@@ -176,16 +209,16 @@ int	main(int ac, char *av[])
 	// sortStack(&a,&b,&tracker);
 	// pb(&a, &b, tracker, tracker -> next);
 	// ft_printf("%d ",checkStacks(&a,&b,&tracker));
-	mergeSort(&a,&b,tracker,tracker->next);
-	while (a)
-	{
-	ft_printf("%d a ",a->num);
-	a = a->next;
-	}
-	ft_printf("\n");
-	while (b)
-	{
-	ft_printf("%d ",b->num);
-	b = b->next;
-	}
+	sort(&a,&b,tracker,tracker->next);
+	// while (a)
+	// {
+	// ft_printf("%d a ",a->num);
+	// a = a->next;
+	// }
+	// ft_printf("\n");
+	// while (b)
+	// {
+	// ft_printf("%d ",b->num);
+	// b = b->next;
+	// }
 }

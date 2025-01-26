@@ -53,11 +53,11 @@ void	ss(t_stack *a, t_stack *b)
 	ft_printf("ss\n");
 }
 
-void	pa(t_stack **a, t_stack **b, t_stack *b_count, t_stack *a_count)
+void	pa(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	t_stack	*tmp;
 
-	if (!b_count->num)
+	if (b_count->num == 0)
 		return ;
 	tmp = *b;
 	*b = (*b) -> next;
