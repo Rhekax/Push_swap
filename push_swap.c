@@ -21,36 +21,26 @@ void print_stack(t_stack *stack, const char *name) {
     ft_printf("\n");
 }
 
-int checkPosition(t_stack *a, t_stack *b)
-{
-    int i = 0;
-	int tmp = b->num;
-	ft_printf("aaaa\n");
-	int c = 0;
-	t_stack *z = b;
+int checkPosition(t_stack *a, t_stack *b) {
+	int i = 0;
+	int position = -1;
+	int smallest_diff = 2147483647;
+	int current_diff;
+	t_stack *current = b;
 
-    if (!b) {
-        return -1;
-    }
-    while (b)
-    {
-        if (b->num > a->num)
-		{
-			if (b->num < tmp)
-				tmp = b->num;
+	while (current) {
+		if (current->num > a->num) {
+			current_diff = current->num - a->num;
+			if (current_diff < smallest_diff) {
+				smallest_diff = current_diff;
+				position = i;
+			}
 		}
-		if (!b->next && !c)
-			return -1;
-		b = b->next;
-	}
-	while (tmp != z->num)
-	{
+		current = current->next;
 		i++;
-		z = z->next;
 	}
-	return i;
+	return (position == -1) ? -1 : position;
 }
-
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	int	i;
@@ -100,8 +90,8 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	{
 		pa(a,b,a_count,b_count);
 	}
-	// while (!checkSort(*a))
-	// 	ra(a,a_count->num);
+	while (!checkSort(*a))
+		ra(a,a_count->num);
 	print_stack(*a,"a");
 }
 
