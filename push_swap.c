@@ -47,44 +47,58 @@ int checkPosition(t_stack *a, t_stack *b) {
 	}
 	return (position);
 }
+// TEOIRİ
+
+
+// eğer 0 ve 3 eşit ise mantıken rr yapabilirim
+
+
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	int	i[4];
 	int flag = 0;
-	int reverse;
-
+	int mreverse;
+	int ireverse = 0;
+	// 0 hamle dolaşan b deki indexi yani buluyo gelmesi gereken 1 a da dolaşan index  2 a nın üstündeykenki hamle  3 en az hamlelinin adaki indexi 2+3 toplam gereken hamle
 	i[1] = 0;
-	i[2] = 2147483647;
+	i[2] = 2147483647; // ireverse index from half to count the max move count correctly in the if statement
 	while (i[1] < a_count->num)
 	{
 		i[0] = checkPosition((*a),(*b));
-		if (i[0] < i[2] + i[3])
-		{
-			i[2] = i[0];
-			if (i[1] > a_count->num / 2)
+			if (i[0] < i[2] + ireverse)
 			{
-				reverse = a_count->num / 2 - flag;
-				flag += 1;
+				i[2] = i[0];
+				if (i[1] > a_count->num / 2)
+				{
+					mreverse = a_count->num / 2 - flag;
+					flag += 1;
+				}
+				i[3] = i[1]; // eğer flag varsa mreverse artık hamle sayısı ve artık rra
+				ireverse = i[3];
+				if (flag)
+					ireverse = mreverse;
 			}
-
-			i[3] = i[1]; // eğer flag varsa terse rra
+		if (i[3] == i[2] && i[1] + 1 == a_count->num)
+		{
+				// rr atabilirsin demek bu
 		}
-		i[1]++;
+			i[1]++;  // burdan çıkarken i 3 benim en az hamle gerektiren numaram
 	}
-	if (i[0] == 0)
+	// hangi sayının hamlesi olduğu implement edilmeli yani 3 numaranın ne olduğu.
+	if (i[2] == 0)
 	{
 		pb(a,b,a_count,b_count);
 		sb(*b);
 	}
-	else if (i[0] == -1)
+	else if (i[2] == -1)
 		pb(a,b,a_count,b_count);
 	else
 	{
-		while (i[0]++)
+		while (i[2]++)
 		{
 			rb(b,b_count->num);
 			if (b_count->num == i[0])
-				i[0] = 0;
+				i[2] = 0;
 		}
 		checkOp(a,b,a_count,b_count);
 	}
