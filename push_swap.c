@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+void trial(t_stack **a, t_stack **b, t_stack *ac, int num) {
+	t_stack *temp = *a;
+	t_stack *temp1 = *b;
+
+
+}
 void print_stack(t_stack *stack, const char *name) {
     ft_printf("%s: ", name);
     while (stack) {
@@ -39,28 +45,46 @@ int checkPosition(t_stack *a, t_stack *b) {
 		current = current->next;
 		i++;
 	}
-	return (position == -1) ? -1 : position;
+	return (position);
 }
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
-	int	i;
+	int	i[4];
+	int flag = 0;
+	int reverse;
 
-	i = checkPosition((*a),(*b));
-	if (i == 0)
+	i[1] = 0;
+	i[2] = 2147483647;
+	while (i[1] < a_count->num)
+	{
+		i[0] = checkPosition((*a),(*b));
+		if (i[0] < i[2] + i[3])
+		{
+			i[2] = i[0];
+			if (i[1] > a_count->num / 2)
+			{
+				reverse = a_count->num / 2 - flag;
+				flag += 1;
+			}
+
+			i[3] = i[1]; // eğer flag varsa terse rra
+		}
+		i[1]++;
+	}
+	if (i[0] == 0)
 	{
 		pb(a,b,a_count,b_count);
 		sb(*b);
 	}
-	else if (i == -1)
+	else if (i[0] == -1)
 		pb(a,b,a_count,b_count);
 	else
 	{
-		while (i)
+		while (i[0]++)
 		{
 			rb(b,b_count->num);
-			i++;
-			if (b_count->num == i)
-				i = 0;
+			if (b_count->num == i[0])
+				i[0] = 0;
 		}
 		checkOp(a,b,a_count,b_count);
 	}
@@ -94,21 +118,6 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 		ra(a,a_count->num);
 	print_stack(*a,"a");
 }
-
-// void	sortStack(t_stack **a, t_stack **b, t_stack **tracker)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < (*tracker)->num / 2)
-// 		pb(a,b,(*tracker)->next,(*tracker));
-// 	while(!checkSort(*a))
-// 	{
-// 		if ((*b)->num > (*a)->num)
-			
-// 	}
-// }
-
 
 int	dup_check(t_stack *a)
 {
