@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 // void trial(t_stack **a, t_stack **b, t_stack *ac, int num) {
 // 	t_stack *temp = *a;
 // 	t_stack *temp1 = *b;
@@ -26,7 +26,20 @@ void print_stack(t_stack *stack, const char *name) {
     }
     ft_printf("\n");
 }
-
+int maxstack(t_stack *stack) {
+	int max = stack->num;
+	int i = 0;
+	int j = 0;
+	while (stack) {
+		if (stack->num > max) {
+			max = stack->num;
+			j = i;
+		}
+		stack = stack->next;
+		i++;
+	}
+	return j;
+}
 int checkPosition(t_stack *a, t_stack *b) {
 	int i = 0;
 	int position = -1;
@@ -47,11 +60,6 @@ int checkPosition(t_stack *a, t_stack *b) {
 	}
 	return (position);
 }
-// TEOIRİ
-
-
-// eğer 0 ve 3 eşit ise mantıken rr yapabilirim
-
 
 void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
@@ -60,8 +68,12 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	int mreverse;
 	int ireverse = 0;
 	// 0 hamle dolaşan b deki indexi yani buluyo gelmesi gereken 1 a da dolaşan index  2 a nın üstündeykenki hamle  3 en az hamlelinin adaki indexi 2+3 toplam gereken hamle
+	i[0] = 0;
 	i[1] = 0;
 	i[2] = 2147483647; // ireverse index from half to count the max move count correctly in the if statement
+	i[3] = 0;
+	flag = 0;
+	ireverse = 0;
 	while (i[1] < a_count->num)
 	{
 		i[0] = checkPosition((*a),(*b));
@@ -84,55 +96,76 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 		}
 			i[1]++;  // burdan çıkarken i 3 benim en az hamle gerektiren numaram
 	}
-	// ft_printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],i[3]);
-	if (i[2] == 0)
+	 printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],ireverse);
+	if (i[2] == 0 && ireverse == 0)
 	{
 		pb(a,b,a_count,b_count);
-		// print_stack(*a,"a");
-		// print_stack(*b,"b");
+		/*print_stack(*a,"a");
+		print_stack(*b,"b");*/
 		sb(*b);
-		// print_stack(*a,"a");
-		// print_stack(*b,"b");
+		/*print_stack(*a,"a");
+		print_stack(*b,"b");*/
 	}
-	else if (i[2] == -1)
+	else if (i[2] == -1 || i[0] == -1)
 	{
+		if (b_count->num > 2) {
+			i[2] = maxstack(*b);
+			while (i[2]--)
+				rb(b,b_count->num);
+		}
+
 		pb(a,b,a_count,b_count);
-		// print_stack(*a,"a");
-		// print_stack(*b,"b");
+		/*print_stack(*a,"a");
+		print_stack(*b,"b");*/
 	}
-	else if(i[3] == i[2] && flag)
+	else if(ireverse == i[2])
 	{
-		while (i[3] != 0)
+		while (ireverse++ != 0)
 		{
 			rrr(a, b, a_count->num, b_count->num);
-			i[3]++;
-			if ( i[3] == a_count->num)
-				i[3] = 0;
-			// print_stack(*a,"a");
-			// print_stack(*b,"b");
+			if ( ireverse == a_count->num)
+				ireverse = 0;
+			/*print_stack(*a,"a");
+			print_stack(*b,"b");*/
 		}
 		checkOp(a,b,a_count,b_count);
 	}
-	else if (i[3])
+	else if (ireverse)
 	{
-		while (i[3]--)
+		while (ireverse--)
 		{
 			ra(a,a_count->num);
-			// print_stack(*a,"a");
-			// print_stack(*b,"b");
+			/*print_stack(*a,"a");
+			print_stack(*b,"b");*/
+		}
+		while (flag && ireverse++)
+		{
+			rra(a,a_count->num);
+			if (ireverse == a_count->num)
+				ireverse = 0;
+			/*print_stack(*a,"a");
+			print_stack(*b,"b");*/
 		}
 		checkOp(a,b,a_count,b_count);
 	}
 	else
 	{
-		while (i[2]++)
-		{
-			rrb(b,b_count->num);
-			if (b_count->num == i[2])
-				i[2] = 0;
-			// print_stack(*a,"a");
-			// print_stack(*b,"b");
+		if (i[2] > b_count->num / 2) {
+			while (i[2]++)
+			{
+				rrb(b,b_count->num);
+				if (b_count->num == i[2])
+					i[2] = 0;
+				/*print_stack(*a,"a");
+				print_stack(*b,"b");*/
+			}
 		}
+		else {
+			while (i[2]--) {
+				rb(b,b_count->num);
+			}
+		}
+
 		checkOp(a,b,a_count,b_count);
 	}
 }
@@ -165,10 +198,9 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	}
 	while (!checkSort(*a))
 	{
-
 		ra(a,a_count->num);
-	// print_stack(*a,"a");
-	// print_stack(*b,"b");
+		/*print_stack(*a,"a");
+		print_stack(*b,"b");*/
 	}
 }
 

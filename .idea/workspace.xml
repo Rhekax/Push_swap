@@ -113,6 +113,9 @@
     &quot;accountId&quot;: &quot;6fe9476c-7a01-4b87-a810-39182920b0ea&quot;
   }
 }</component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="8qc8WYAE" />
+  </component>
   <component name="MakefileLocalSettings">
     <option name="availableProjects">
       <map>
@@ -170,6 +173,8 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -232,7 +237,9 @@
       <workItem from="1733097301060" duration="61000" />
       <workItem from="1733172849288" duration="69000" />
       <workItem from="1734469947581" duration="18000" />
-      <workItem from="1738265923016" duration="5231000" />
+      <workItem from="1738265923016" duration="5258000" />
+      <workItem from="1738356956883" duration="148000" />
+      <workItem from="1738357112369" duration="68000" />
     </task>
     <servers />
   </component>
