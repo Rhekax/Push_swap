@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-void trial(t_stack **a, t_stack **b, t_stack *ac, int num) {
-	t_stack *temp = *a;
-	t_stack *temp1 = *b;
+// void trial(t_stack **a, t_stack **b, t_stack *ac, int num) {
+// 	t_stack *temp = *a;
+// 	t_stack *temp1 = *b;
 
 
-}
+// }
 void print_stack(t_stack *stack, const char *name) {
     ft_printf("%s: ", name);
     while (stack) {
@@ -80,25 +80,58 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 			}
 		if (i[3] == i[2] && i[1] + 1 == a_count->num)
 		{
-				// rr atabilirsin demek bu
+			break;
 		}
 			i[1]++;  // burdan çıkarken i 3 benim en az hamle gerektiren numaram
 	}
-	// hangi sayının hamlesi olduğu implement edilmeli yani 3 numaranın ne olduğu.
+	// ft_printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],i[3]);
 	if (i[2] == 0)
 	{
 		pb(a,b,a_count,b_count);
+		// print_stack(*a,"a");
+		// print_stack(*b,"b");
 		sb(*b);
+		// print_stack(*a,"a");
+		// print_stack(*b,"b");
 	}
 	else if (i[2] == -1)
+	{
 		pb(a,b,a_count,b_count);
+		// print_stack(*a,"a");
+		// print_stack(*b,"b");
+	}
+	else if(i[3] == i[2] && flag)
+	{
+		while (i[3] != 0)
+		{
+			rrr(a, b, a_count->num, b_count->num);
+			i[3]++;
+			if ( i[3] == a_count->num)
+				i[3] = 0;
+			// print_stack(*a,"a");
+			// print_stack(*b,"b");
+		}
+		checkOp(a,b,a_count,b_count);
+	}
+	else if (i[3])
+	{
+		while (i[3]--)
+		{
+			ra(a,a_count->num);
+			// print_stack(*a,"a");
+			// print_stack(*b,"b");
+		}
+		checkOp(a,b,a_count,b_count);
+	}
 	else
 	{
 		while (i[2]++)
 		{
-			rb(b,b_count->num);
-			if (b_count->num == i[0])
+			rrb(b,b_count->num);
+			if (b_count->num == i[2])
 				i[2] = 0;
+			// print_stack(*a,"a");
+			// print_stack(*b,"b");
 		}
 		checkOp(a,b,a_count,b_count);
 	}
@@ -127,10 +160,16 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	while (*b)
 	{
 		pa(a,b,a_count,b_count);
+	// 		print_stack(*a,"a");
+	// print_stack(*b,"b");
 	}
 	while (!checkSort(*a))
+	{
+
 		ra(a,a_count->num);
-	print_stack(*a,"a");
+	// print_stack(*a,"a");
+	// print_stack(*b,"b");
+	}
 }
 
 int	dup_check(t_stack *a)
@@ -229,6 +268,7 @@ int	main(int ac, char *av[])
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
+	// print_stack(a,"a");
 	// sortStack(&a,&b,&tracker);
 	// pb(&a, &b, tracker, tracker -> next);
 	// ft_printf("%d ",checkStacks(&a,&b,&tracker));

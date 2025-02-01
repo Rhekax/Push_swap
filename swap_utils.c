@@ -83,25 +83,22 @@ void	pb(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 
 void	ra(t_stack **a, int size)
 {
-    t_stack	*last;
-    t_stack	*newLast;
+	t_stack	*first;
+	t_stack	*newFirst;
 
 	if (size < 2)
 		return ;
-    last = *a;
-    newLast = *a;
-    while (last -> next)
-    {
-      newLast = last;
-      last = last -> next;
-    }
-    newLast -> next = NULL;
-    last -> next = *a;
-    *a = last;
+	first = *a;
+    newFirst = (*a) -> next;
+    while (first -> next)
+      first = first -> next;
+    first -> next = *a;
+    (*a) -> next = NULL;
+    *a = newFirst;
 	ft_printf("ra\n");
 }
 
-void	rb(t_stack **b, int size)
+void	rrb(t_stack **b, int size)
 {
 	t_stack	*last;
 	t_stack	*newLast;
@@ -118,27 +115,30 @@ void	rb(t_stack **b, int size)
 	newLast -> next = NULL;
 	last -> next = *b;
 	*b = last;
-	ft_printf("rb\n");
+	ft_printf("rrb\n");
 }
 
 void	rra(t_stack **a, int size)
 {
-	t_stack	*first;
-	t_stack	*newFirst;
+    t_stack	*last;
+    t_stack	*newLast;
 
 	if (size < 2)
 		return ;
-	first = *a;
-    newFirst = (*a) -> next;
-    while (first -> next)
-      first = first -> next;
-    first -> next = *a;
-    (*a) -> next = NULL;
-    *a = newFirst;
+    last = *a;
+    newLast = *a;
+    while (last -> next)
+    {
+      newLast = last;
+      last = last -> next;
+    }
+    newLast -> next = NULL;
+    last -> next = *a;
+    *a = last;
 	ft_printf("rra\n");
 }
 
-void	rrb(t_stack **b, int size)
+void	rb(t_stack **b, int size)
 {
 	t_stack	*first;
 	t_stack	*newFirst;
@@ -152,7 +152,7 @@ void	rrb(t_stack **b, int size)
 	first -> next = *b;
 	(*b) -> next = NULL;
 	*b = newFirst;
-	ft_printf("rrb\n");
+	ft_printf("rb\n");
 }
 
 void	rr(t_stack **a, t_stack **b, int asize, int bsize)
