@@ -43,15 +43,13 @@ int maxstack(t_stack *stack) {
 int checkPosition(t_stack *a, t_stack *b) {
 	int i = 0;
 	int position = -1;
-	int smallest_diff = 2147483647;
-	int current_diff;
+	long long smallest_diff = 9223372036854775807;
 	t_stack *current = b;
 
 	while (current) {
-		if (current->num > a->num) {
-			current_diff = current->num - a->num;
-			if (current_diff < smallest_diff) {
-				smallest_diff = current_diff;
+		if (current->num >a->num) {
+			if (current->num < smallest_diff) {
+				smallest_diff = current->num;
 				position = i;
 			}
 		}
@@ -96,8 +94,8 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 		}
 			i[1]++;  // burdan çıkarken i 3 benim en az hamle gerektiren numaram
 	}
-	 printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],ireverse);
-	if (i[2] == 0 && ireverse == 0)
+	 /*printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],ireverse);*/
+	if (i[2] == 0)
 	{
 		pb(a,b,a_count,b_count);
 		/*print_stack(*a,"a");
@@ -163,9 +161,10 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 		else {
 			while (i[2]--) {
 				rb(b,b_count->num);
+				/*print_stack(*a,"a");
+				print_stack(*b,"b");*/
 			}
 		}
-
 		checkOp(a,b,a_count,b_count);
 	}
 }
