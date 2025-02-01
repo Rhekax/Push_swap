@@ -130,7 +130,7 @@ void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	}
 	else if (ireverse)
 	{
-		while (ireverse--)
+		while (!flag && ireverse--)
 		{
 			ra(a,a_count->num);
 			/*print_stack(*a,"a");
@@ -183,6 +183,21 @@ int	checkSort(t_stack *a)
 	return (1);
 }
 
+int	locationi(t_stack *a) {
+	int location = 0;
+	int min = a->num;
+	int min_location = 0;
+
+	while (a) {
+		if (a->num < min) {
+			min = a->num;
+			min_location = location;
+		}
+		location++;
+		a = a->next;
+	}
+	return (min_location);
+}
 void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	while (a_count->num)
@@ -197,7 +212,10 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	}
 	while (!checkSort(*a))
 	{
-		ra(a,a_count->num);
+		if (locationi(*a) < a_count->num / 2)
+			ra(a,a_count->num);
+		else
+			rra(a,a_count->num);
 		/*print_stack(*a,"a");
 		print_stack(*b,"b");*/
 	}
