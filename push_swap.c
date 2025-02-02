@@ -12,27 +12,7 @@
 
 #include "push_swap.h"
 
-int ft_check_if_sorted(t_stack *stack_a)
-{
-	while (stack_a && stack_a->next)
-	{
-		if (stack_a->num > stack_a->next->num)
-			return (0);
-		stack_a = stack_a->next;
-	}
-	return (1);
-}
-
-void print_stack(t_stack *stack, const char *name) {
-    ft_printf("%s: ", name);
-    while (stack) {
-        ft_printf("%d: ", stack->num);
-    	ft_printf("%d  ", stack->index);
-        stack = stack->next;
-    }
-    ft_printf("\n");
-}
-int	dup_check(t_stack *a)
+static int	dup_check(t_stack *a)
 {
 	t_stack	*iter;
 
@@ -41,24 +21,24 @@ int	dup_check(t_stack *a)
           iter = a -> next;
 		while (iter)
 		{
-			if (a->num == iter->num)
-				exit(EXIT_FAILURE);
-			iter = iter->next;
+			if (a->num == iter -> num)
+				return (1);
+			iter = iter -> next;
 		}
 		a = a -> next;
 	}
 	return (0);
 }
 
-t_stack	*fill_stack(char **arg)
+static t_stack	*fill_stack(char **arg)
 {
 	t_stack	*top;
 	t_stack	*tmp;
 
 	top = malloc (sizeof(t_stack));
-	*top = (t_stack){};
 	if (!top)
 		return (0);
+	*top = (t_stack){};
 	tmp = top;
 	while (*(++arg))
 	{
@@ -80,7 +60,7 @@ t_stack	*fill_stack(char **arg)
 	return (top);
 }
 
-int	argument_check(char **args)
+static int	argument_check(char **args)
 {
 	int	i;
 	int	j;
@@ -91,7 +71,7 @@ int	argument_check(char **args)
 	{
 		i = 0;
 		if (!args[j][i])
-			exit(EXIT_FAILURE);
+			exit (EXIT_FAILURE);
 		while (args[j][i])
 		{
 			if (args[j][i] != 32 && !ft_isdigit(args[j][i])
@@ -110,6 +90,17 @@ int	argument_check(char **args)
 	}
 	return (0);
 }
+void	sort(t_stack **a, t_stack **b, t_stack *tracker)
+{
+	if (tracker -> num == 2)
+		sort_two_nodes(a);
+	else if (tracker -> num == 3)
+		sort_three_nodes(a,tracker -> num);
+	else if (tracker -> num<= 5)
+		sort_four_five_nodes(a, b,tracker);
+	else
+		sort_big_list(a,b,tracker);
+}
 
 int	main(int ac, char *av[])
 {
@@ -121,26 +112,17 @@ int	main(int ac, char *av[])
 	b = NULL;
 	if (ac == 1)
 		exit (EXIT_FAILURE);
-	else if (argument_check(av))
-		exit (EXIT_FAILURE);
+	argument_check(av);
 	a = fill_stack(av);
 	tracker = ft_lstnew(ft_lstsize(a));
 	tracker -> next = ft_lstnew(0);
 	if (dup_check(a))
-		exit (EXIT_FAILURE);
-	get_index(&a,tracker->num);
-	if (ft_check_if_sorted(a))
+		list_error(a, b, tracker);
+	get_index(&a,tracker -> num);
+	if (check_if_sorted(a))
 		return (0);
-	else if (tracker->num == 1)
+	else if (tracker -> num == 1)
 		return (0);
-	else if (tracker->num == 2)
-		sort_two_nodes(&a);
-	else if (tracker->num == 3)
-		sort_three_nodes(&a,tracker->num);
-	else if (tracker->num<= 5)
-		sort_four_five_nodes(&a, &b,tracker);
-	else
-		sort_big_list(&a,&b,tracker);
-	/*print_stack(a,"a");*/
-return (0);
+	sort(&a,&b,tracker);
+	return (0);
 }

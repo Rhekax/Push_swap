@@ -8,6 +8,7 @@
     <option name="/Default/Housekeeping/GlobalSettingsUpgraded/IsUpgraded/@EntryValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexRemoved" />
+    <option name="/Default/Housekeeping/OptionsDialog/SelectedPageId/@EntryValue" value="CppFormatterOtherPage" type="string" />
   </component>
   <component name="CMakeProjectFlavorService">
     <option name="flavorId" value="CMakePlainProjectFlavor" />
@@ -25,18 +26,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f7a99d0-13af-4e67-8024-945c09cb95f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/sort_med.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ehre" beforeDir="false" afterPath="$PROJECT_DIR$/ehre" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ehre" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ft_printf/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ft_printf/ft_printf.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/ft_printf.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ft_printf/ft_printf.h" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/ft_printf.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ft_printf/ft_printf_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/ft_printf_utils.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ft_printf/libftprintf.a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hb" beforeDir="false" afterPath="$PROJECT_DIR$/hb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/here" beforeDir="false" afterPath="$PROJECT_DIR$/here" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ft_printf/libftprintf.a" beforeDir="false" afterPath="$PROJECT_DIR$/ft_printf/libftprintf.a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_index.c" beforeDir="false" afterPath="$PROJECT_DIR$/get_index.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/here" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/libft/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/ft_atoi.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_atoi.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/ft_bzero.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_bzero.c" afterDir="false" />
@@ -81,11 +85,12 @@
       <change beforePath="$PROJECT_DIR$/libft/ft_substr.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_substr.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/ft_tolower.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_tolower.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/ft_toupper.c" beforeDir="false" afterPath="$PROJECT_DIR$/libft/ft_toupper.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/libft/libft.a" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/libft/libft.h" beforeDir="false" afterPath="$PROJECT_DIR$/libft/libft.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/push_swap.c" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/push_swap.h" beforeDir="false" afterPath="$PROJECT_DIR$/push_swap.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/run.exe" beforeDir="false" afterPath="$PROJECT_DIR$/run.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/small_sort.c" beforeDir="false" afterPath="$PROJECT_DIR$/small_sort.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/swap_utils.c" beforeDir="false" afterPath="$PROJECT_DIR$/swap_utils.c" afterDir="false" />
     </list>
@@ -111,12 +116,12 @@
     &quot;assignee&quot;: &quot;Rhekax&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:Rhekax/Push_swap.git",
-    "accountId": "6fe9476c-7a01-4b87-a810-39182920b0ea"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Rhekax/Push_swap.git&quot;,
+    &quot;accountId&quot;: &quot;6fe9476c-7a01-4b87-a810-39182920b0ea&quot;
   }
-}]]></component>
+}</component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="8qc8WYAE" />
   </component>
@@ -184,11 +189,6 @@
   }
 }</component>
   <component name="RunManager" selected="Native Application.all">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="all" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Push_swap" TARGET_NAME="all" CONFIG_NAME="all" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
@@ -227,6 +227,11 @@
     <configuration name="re" type="CLionNativeAppRunConfigurationType" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Push_swap" TARGET_NAME="re" CONFIG_NAME="re" version="1">
       <method v="2">
         <option name="CLION.COMPOUND.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -255,6 +260,7 @@
       <workItem from="1738357112369" duration="68000" />
       <workItem from="1738431800476" duration="17957000" />
       <workItem from="1738471023036" duration="3758000" />
+      <workItem from="1738522495019" duration="3197000" />
     </task>
     <servers />
   </component>
