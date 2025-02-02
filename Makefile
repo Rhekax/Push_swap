@@ -1,5 +1,5 @@
 NAME = push_swap
-SOURCE = push_swap.c swap_utils.c
+SOURCE = push_swap.c swap_utils.c get_index.c
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 LIBFTPATH = libft/

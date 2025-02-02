@@ -20,6 +20,8 @@ typedef struct s_stack
 {
 	int				num;
 	struct s_stack	*next;
+	int				index;
+	int				assigned;
 }					t_stack;
 
 char	**ft_split(const char *s, char c);

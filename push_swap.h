@@ -30,4 +30,8 @@ void	sa(t_stack *top);
 void	ss(t_stack *a, t_stack *b);
 void	sortStack(t_stack **a, t_stack **b, t_stack **tracker);
 int		checkStacks(t_stack **a, t_stack **b, t_stack **tracker);
+void	get_index(t_stack **a, int size);
+void print_stack(t_stack *stack, const char *name);
+int	checkSort(t_stack *a);
+void	sort_big_list(t_stack **stack_a, t_stack **stack_b, t_stack *tracker);
 #endif

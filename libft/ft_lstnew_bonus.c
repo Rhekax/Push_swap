@@ -20,6 +20,8 @@ t_stack	*ft_lstnew(int content)
 	if (!new)
 		return (NULL);
 	new -> num = content;
+    new -> index = 0;
+    new -> assigned = 0;
 	new -> next = NULL;
 	return (new);
 }
