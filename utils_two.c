@@ -50,3 +50,8 @@ void	rrb(t_stack **b, int size)
 	*b = last;
 	ft_printf("rrb\n");
 }
+void	skip_whitespace(char ***arg)
+{
+	while ((***arg == 32) || (***arg >= 9 && ***arg <= 13))
+		(**arg)++;
+}

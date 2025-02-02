@@ -17,6 +17,7 @@
 # include "./ft_printf/ft_printf.h"
 # include <stdlib.h>
 
+void	skip_whitespace(char ***arg);
 void	rrr(t_stack **a, t_stack **b, int asize, int bsize);
 void	rr(t_stack **a, t_stack **b, int asize, int bsize);
 void	rrb(t_stack **b, int bsize);

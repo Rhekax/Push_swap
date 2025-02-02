@@ -49,8 +49,7 @@ static t_stack	*fill_stack(char **arg)
 			tmp -> num = ft_atoi (*(const char **)arg);
 			while (ft_isdigit(**arg) || **arg == 43 || **arg == 45)
 				(*arg)++;
-			while (**arg == 32 || (**arg >= 9 && **arg <= 13) )
-				(*arg)++;
+			skip_whitespace(&arg);
 			if (!**arg && !*(arg + 1))
 				break ;
 			ft_lstadd_back(&tmp, ft_lstnew(tmp->num));
