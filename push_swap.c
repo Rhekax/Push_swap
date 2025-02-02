@@ -129,7 +129,18 @@ int	main(int ac, char *av[])
 	if (dup_check(a))
 		exit (EXIT_FAILURE);
 	get_index(&a,tracker->num);
-	sort_big_list(&a,&b,tracker);
+	if (ft_check_if_sorted(a))
+		return (0);
+	else if (tracker->num == 1)
+		return (0);
+	else if (tracker->num == 2)
+		sort_two_nodes(&a);
+	else if (tracker->num == 3)
+		sort_three_nodes(&a,tracker->num);
+	else if (tracker->num<= 5)
+		sort_four_five_nodes(&a, &b,tracker);
+	else
+		sort_big_list(&a,&b,tracker);
 	/*print_stack(a,"a");*/
-
+return (0);
 }

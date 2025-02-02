@@ -46,10 +46,10 @@ void sort_big_list(t_stack **stack_a, t_stack **stack_b, t_stack *tracker)
 	int max_bits;
 	int size;
 
-	size = tracker->num; // Number of elements in stack
+	size = tracker->num;
 	max_bits = 0;
 
-	// Find the max bits needed (log2 of max index)
+
 	while ((size - 1) >> max_bits)
 		max_bits++;
 
@@ -60,14 +60,14 @@ void sort_big_list(t_stack **stack_a, t_stack **stack_b, t_stack *tracker)
 		while (count++ < size)
 		{
 			if ((((*stack_a)->index >> bit_pos) & 1) == 0)
-				pb(stack_a, stack_b, tracker, tracker->next); // Push to B if bit is 0
+				pb(stack_a, stack_b, tracker, tracker->next);
 			else
-				ra(stack_a, tracker->num); // Rotate A if bit is 1
+				ra(stack_a, tracker->num);
 		}
 
 		while (*stack_b)
-			pa(stack_a, stack_b, tracker, tracker->next); // Push everything back to A
+			pa(stack_a, stack_b, tracker, tracker->next);
 
-		bit_pos++; // Move to the next bit position
+		bit_pos++;
 	}
 }

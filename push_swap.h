@@ -34,4 +34,7 @@ void	get_index(t_stack **a, int size);
 void print_stack(t_stack *stack, const char *name);
 int	checkSort(t_stack *a);
 void	sort_big_list(t_stack **stack_a, t_stack **stack_b, t_stack *tracker);
+void sort_two_nodes(t_stack **stack_a);
+void sort_three_nodes(t_stack **stack_a,int size);
+void sort_four_five_nodes(t_stack **stack_a, t_stack **stack_b,t_stack *tracker);
 #endif
