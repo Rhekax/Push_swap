@@ -44,12 +44,22 @@ int checkPosition(t_stack *a, t_stack *b) {
 	int i = 0;
 	int position = -1;
 	long long smallest_diff = 9223372036854775807;
+	long long smallest_num = 9223372036854775807;
 	t_stack *current = b;
 
 	while (current) {
-		if (current->num >a->num) {
+		// Check if current->num is greater than a->num
+		if (current->num > a->num) {
 			if (current->num < smallest_diff) {
 				smallest_diff = current->num;
+				position = i;
+			}
+		}
+		// Track the smallest number in stack b
+		if (current->num < smallest_num) {
+			smallest_num = current->num;
+			// Update position only if no greater number is found
+			if (smallest_diff == 9223372036854775807) {
 				position = i;
 			}
 		}
@@ -58,115 +68,95 @@ int checkPosition(t_stack *a, t_stack *b) {
 	}
 	return (position);
 }
+void checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count) {
+    int best_move = 2147483647; // Initialize to a large value
+    int best_rotation_a = 0;
+    int best_rotation_b = 0;
+    int current_index = 0;
+    int position_in_b = 0;
 
-void	checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
-{
-	int	i[4];
-	int flag = 0;
-	int mreverse;
-	int ireverse = 0;
-	// 0 hamle dolaşan b deki indexi yani buluyo gelmesi gereken 1 a da dolaşan index  2 a nın üstündeykenki hamle  3 en az hamlelinin adaki indexi 2+3 toplam gereken hamle
-	i[0] = 0;
-	i[1] = 0;
-	i[2] = 2147483647; // ireverse index from half to count the max move count correctly in the if statement
-	i[3] = 0;
-	flag = 0;
-	ireverse = 0;
-	while (i[1] < a_count->num)
-	{
-		i[0] = checkPosition((*a),(*b));
-			if (i[0] < i[2] + ireverse)
-			{
-				i[2] = i[0];
-				if (i[1] > a_count->num / 2)
-				{
-					mreverse = a_count->num / 2 - flag;
-					flag += 1;
-				}
-				i[3] = i[1]; // eğer flag varsa mreverse artık hamle sayısı ve artık rra
-				ireverse = i[3];
-				if (flag)
-					ireverse = mreverse;
-			}
-		if (i[3] == i[2] && i[1] + 1 == a_count->num)
-		{
-			break;
-		}
-			i[1]++;  // burdan çıkarken i 3 benim en az hamle gerektiren numaram
-	}
-	 /*printf("0: %d   1 : %d 2 : %d 3 : %d \n",i[0],i[1],i[2],ireverse);*/
-	if (i[2] == 0)
-	{
-		pb(a,b,a_count,b_count);
-		/*print_stack(*a,"a");
-		print_stack(*b,"b");*/
-		sb(*b);
-		/*print_stack(*a,"a");
-		print_stack(*b,"b");*/
-	}
-	else if (i[2] == -1 || i[0] == -1)
-	{
-		if (b_count->num > 2) {
-			i[2] = maxstack(*b);
-			while (i[2]--)
-				rb(b,b_count->num);
-		}
+    // Find the best move for each element in stack A
+    t_stack *current_a = *a;
 
-		pb(a,b,a_count,b_count);
-		/*print_stack(*a,"a");
-		print_stack(*b,"b");*/
-	}
-	else if(ireverse == i[2])
-	{
-		while (ireverse++ != 0)
-		{
-			rrr(a, b, a_count->num, b_count->num);
-			if ( ireverse == a_count->num)
-				ireverse = 0;
-			/*print_stack(*a,"a");
-			print_stack(*b,"b");*/
-		}
-		checkOp(a,b,a_count,b_count);
-	}
-	else if (ireverse)
-	{
-		while (!flag && ireverse--)
-		{
-			ra(a,a_count->num);
-			/*print_stack(*a,"a");
-			print_stack(*b,"b");*/
-		}
-		while (flag && ireverse++)
-		{
-			rra(a,a_count->num);
-			if (ireverse == a_count->num)
-				ireverse = 0;
-			/*print_stack(*a,"a");
-			print_stack(*b,"b");*/
-		}
-		checkOp(a,b,a_count,b_count);
-	}
-	else
-	{
-		if (i[2] > b_count->num / 2) {
-			while (i[2]++)
-			{
-				rrb(b,b_count->num);
-				if (b_count->num == i[2])
-					i[2] = 0;
-				/*print_stack(*a,"a");
-				print_stack(*b,"b");*/
-			}
-		}
-		else {
-			while (i[2]--) {
-				rb(b,b_count->num);
-				/*print_stack(*a,"a");
-				print_stack(*b,"b");*/
-			}
-		}
-		checkOp(a,b,a_count,b_count);
-	}
+    while (current_a) {
+        position_in_b = checkPosition(current_a, *b);
+        int rotations_a = current_index;
+        int rotations_b = position_in_b;
+
+        // Calculate the total moves required
+        int total_moves = rotations_a + rotations_b;
+
+        // Check if this is the best move so far
+        if (total_moves < best_move) {
+            best_move = total_moves;
+            best_rotation_a = rotations_a;
+            best_rotation_b = rotations_b;
+        }
+
+        current_a = current_a->next;
+        current_index++;
+    }
+
+    printf("The best move is %d\n", best_move);
+    print_stack((*a), "a");
+    print_stack((*b), "b");
+
+    if (position_in_b > -1) {
+    	if ((*a)->num > (*a)->next->num && (*b)->num > (*b)->next->num) {
+    		ss(*a, *b); // Swap both stacks
+    	} else if ((*a)->num > (*a)->next->num) {
+    		sa(*a); // Swap stack a
+    	} else if ((*b)->num > (*b)->next->num) {
+    		sb(*b); // Swap stack b
+    	}
+
+        // Determine if combined rotations can be used
+        if (best_rotation_a <= a_count->num / 2 && best_rotation_b <= b_count->num / 2) {
+            // Use rr (rotate both stacks forward)
+            int min_rotations = (best_rotation_a < best_rotation_b) ? best_rotation_a : best_rotation_b;
+            while (min_rotations--) {
+                rr(a, b, a_count->num, b_count->num);
+            }
+            best_rotation_a -= min_rotations;
+            best_rotation_b -= min_rotations;
+        } else if (best_rotation_a > a_count->num / 2 && best_rotation_b > b_count->num / 2) {
+            // Use rrr (rotate both stacks backward)
+            int min_rotations = (a_count->num - best_rotation_a < b_count->num - best_rotation_b)
+                                ? (a_count->num - best_rotation_a)
+                                : (b_count->num - best_rotation_b);
+            while (min_rotations--) {
+                rrr(a, b, a_count->num, b_count->num);
+            }
+            best_rotation_a += min_rotations;
+            best_rotation_b += min_rotations;
+        }
+
+        // Perform remaining rotations individually
+        if (best_rotation_a <= a_count->num / 2) {
+            while (best_rotation_a--) {
+                ra(a, a_count->num);
+            }
+        } else {
+            best_rotation_a = a_count->num - best_rotation_a;
+            while (best_rotation_a--) {
+                rra(a, a_count->num);
+            }
+        }
+
+        if (best_rotation_b <= b_count->num / 2) {
+            while (best_rotation_b--) {
+                rb(b, b_count->num);
+            }
+        } else {
+            best_rotation_b = b_count->num - best_rotation_b;
+            while (best_rotation_b--) {
+                rrb(b, b_count->num);
+            }
+        }
+    }
+
+    // Push the element from stack A to stack B
+    pb(a, b, a_count, b_count);
 }
 int	checkSort(t_stack *a)
 {
@@ -200,6 +190,8 @@ int	locationi(t_stack *a) {
 }
 void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
+	pb(a,b,a_count,b_count);
+	pb(a,b,a_count,b_count);
 	while (a_count->num)
 	{
 		checkOp(a,b,a_count,b_count);
@@ -210,9 +202,9 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 	// 		print_stack(*a,"a");
 	// print_stack(*b,"b");
 	}
-	while (!checkSort(*a))
+	while (locationi(*a) != 0)
 	{
-		if (locationi(*a) < a_count->num / 2)
+		if (locationi(*a) <= a_count->num / 2)
 			ra(a,a_count->num);
 		else
 			rra(a,a_count->num);
