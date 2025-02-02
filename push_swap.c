@@ -100,15 +100,9 @@ void checkOp(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count) {
     printf("The best move is %d\n", best_move);
     print_stack((*a), "a");
     print_stack((*b), "b");
-
+	printf("The best rotation is %d\n", position_in_b);
     if (position_in_b > -1) {
-    	if ((*a)->num > (*a)->next->num && (*b)->num > (*b)->next->num) {
-    		ss(*a, *b); // Swap both stacks
-    	} else if ((*a)->num > (*a)->next->num) {
-    		sa(*a); // Swap stack a
-    	} else if ((*b)->num > (*b)->next->num) {
-    		sb(*b); // Swap stack b
-    	}
+
 
         // Determine if combined rotations can be used
         if (best_rotation_a <= a_count->num / 2 && best_rotation_b <= b_count->num / 2) {
@@ -208,8 +202,8 @@ void sort(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 			ra(a,a_count->num);
 		else
 			rra(a,a_count->num);
-		/*print_stack(*a,"a");
-		print_stack(*b,"b");*/
+		print_stack(*a,"a");
+		print_stack(*b,"b");
 	}
 }
 
