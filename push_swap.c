@@ -59,7 +59,7 @@ static t_stack	*fill_stack(char **arg)
 	return (top);
 }
 
-static int	argument_check(char **args)
+int	argument_check(char **args)
 {
 	int	i;
 	int	j;
@@ -73,22 +73,14 @@ static int	argument_check(char **args)
 			exit (EXIT_FAILURE);
 		while (args[j][i])
 		{
-			if (args[j][i] != 32 && !ft_isdigit(args[j][i])
-			&& (args[j][i] < 9 || args[j][i] > 13) &&
-					args[j][i] != 43 && args[j][i] != 45)
-				exit (EXIT_FAILURE);
-			else if ((args[j][i + 1] == 43 || args[j][i + 1] == 45)
-				&& ft_isdigit(args[j][i]))
-				exit (EXIT_FAILURE);
-			else if (((args[j][i + 1] == 43 || args[j][i + 1] == 45)
-					&& (args[j][i] == 43 || args[j][i] == 45)))
-				exit (EXIT_FAILURE);
+			arg_check(&args[j][i]);
 			i++;
 		}
 		j++;
 	}
 	return (0);
 }
+
 void	sort(t_stack **a, t_stack **b, t_stack *tracker)
 {
 	if (tracker -> num == 2)

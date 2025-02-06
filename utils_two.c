@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+void arg_check(const char *args)
+{
+	if (*args != 32 && !ft_isdigit(*args)
+		&& (*args < 9 || *args > 13) &&
+		*args != 43 && *args != 45)
+		exit (EXIT_FAILURE);
+	else if ((*(args + 1) == 43 || *(args + 1) == 45)
+			&& ft_isdigit(*args))
+		exit (EXIT_FAILURE);
+	else if ((*(args + 1) == 43 || *(args + 1)== 45)
+			&& (*args == 43 || *args == 45))
+		exit (EXIT_FAILURE);
+}
+
 void	pb(t_stack **a, t_stack **b, t_stack *a_count, t_stack *b_count)
 {
 	t_stack	*tmp;

@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void	checkOverflow(long digit, long result, long sign)
+static void	checkOverflow(long digit, long result, long sign)
 {
 	if (sign == -1 && result > (2147483648 - digit) / 10)
 		exit(EXIT_FAILURE);

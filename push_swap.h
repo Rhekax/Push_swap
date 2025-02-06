@@ -18,6 +18,7 @@
 # include <stdlib.h>
 
 void	skip_whitespace(char ***arg);
+void	arg_check(const char *args);
 void	rrr(t_stack **a, t_stack **b, int asize, int bsize);
 void	rr(t_stack **a, t_stack **b, int asize, int bsize);
 void	rrb(t_stack **b, int bsize);
