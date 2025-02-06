@@ -7,6 +7,7 @@ void	list_error(t_stack *a, t_stack *b, t_stack *tracker)
 	free(a);
 	if (b)
 		free(b);
+	ft_printf("Error\n");
 	exit (EXIT_FAILURE);
 }
 

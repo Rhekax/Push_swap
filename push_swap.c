@@ -70,7 +70,11 @@ int	argument_check(char **args)
 	{
 		i = 0;
 		if (!args[j][i])
+		{
+			ft_printf("Error\n");
 			exit (EXIT_FAILURE);
+		}
+
 		while (args[j][i])
 		{
 			arg_check(&args[j][i]);
